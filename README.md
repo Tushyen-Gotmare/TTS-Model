@@ -1,56 +1,123 @@
+# Text-to-Speech Fine-tuning Application
 
-# Fine-Tuning TTS Model Using SpeechT5
-
-This project focuses on fine-tuning a Text-to-Speech (TTS) model using Microsoft's SpeechT5. It generates synthetic speech from text input and supports further customization by integrating speaker embeddings. The generated audio is saved as a waveform file (`output.wav`).
-
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Input Parameters](#input-parameters)
-- [Known Issues](#known-issues)
-- [Contributing](#contributing)
-
-## Overview
-
-The project leverages the SpeechT5 model from Microsoft's Hugging Face library to fine-tune text-to-speech capabilities. The main focus is on generating high-quality audio with technical vocabulary. The model also supports speaker embeddings, which allow you to use specific voice characteristics.
+A Streamlit-based web application for generating and fine-tuning text-to-speech models using the SpeechT5 architecture.
 
 ## Features
-- **Text-to-Speech Generation:** Converts technical text input into spoken words.
-- **Speaker Embeddings:** Allows custom voice characteristics for generated speech.
-- **Audio Export:** Saves generated speech as a `.wav` file for playback.
+
+- 🎤 Text-to-speech generation
+- ⚡ Real-time speech synthesis
+- 🎛️ Adjustable speech rate
+- 📊 Model fine-tuning capabilities
+- 💾 Audio download options
+- 📈 Training progress visualization
+
+## Prerequisites
+
+- Python 3.8 or higher
+- CUDA-capable GPU (recommended for faster processing)
+- 8GB RAM minimum (16GB recommended)
 
 ## Installation
 
-Follow these steps to set up the environment and dependencies:
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd tts-fine-tuning-app
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/TTSProject.git
-   cd TTSProject
-   
-## Required Dependencies
-- transformers
-- torch
-- torchaudio
-- soundfile
-- numpy
-- datasets
+2. Create and activate a virtual environment:
+```bash
+# Windows
+python -m venv venv
+.\venv\Scripts\activate
+
+# Linux/MacOS
+python -m venv venv
+source venv/bin/activate
+```
+
+3. Install the required packages:
+```bash
+pip install -r requirements.txt
+```
+
+### Requirements.txt
+```
+streamlit>=1.28.0
+torch>=2.0.0
+soundfile>=0.12.1
+transformers>=4.30.0
+numpy>=1.24.0
+pandas>=2.0.0
+librosa>=0.10.0
+```
 
 ## Usage
-To run the fine-tuning process and generate the audio, execute the fine_tune_tts.py script:
-```
-python fine_tune_tts.py
-```
-## Input Parameters
-- Text: Modify the text variable in fine_tune_tts.py to change the input text.
-- Speaker Embeddings: Customize speaker embeddings by modifying the speaker_embeddings loaded from the dataset.
 
-## Known Issues
-- Blank Audio: If the audio file is blank or of poor quality, you may need to adjust the spectrogram's n_fft parameter or fine-tune the model further.
-- Unsupported File Format: Ensure that the audio file is in a supported format before attempting playback.
+1. Start the Streamlit application:
+```bash
+streamlit run app.py
+```
+
+2. Open your web browser and navigate to `http://localhost:8501`
+
+3. To generate speech:
+   - Navigate to the "Generate Speech" tab
+   - Enter your text in the input field
+   - Adjust the speech rate if desired
+   - Click "Generate Speech"
+   - Use the download button to save the generated audio
+
+4. To fine-tune the model:
+   - Navigate to the "Fine-tune Model" tab
+   - Upload a CSV file containing training data
+   - Set training parameters
+   - Start the fine-tuning process
+
+## Training Data Format
+
+The CSV file for fine-tuning should contain the following columns:
+- `text`: The text content for training
+- `audio_path`: Path to corresponding audio files
+
+Example:
+```csv
+text,audio_path
+"Hello world",/path/to/audio1.wav
+"Text to speech",/path/to/audio2.wav
+```
+
+## Model Information
+
+This application uses the following models from the Hugging Face model hub:
+- `microsoft/speecht5_tts`: Main TTS model
+- `microsoft/speecht5_hifigan`: Vocoder model
+
+## Known Limitations
+
+- Fine-tuning functionality is currently in development
+- Maximum text length is limited to 1000 characters
+- Processing time may vary based on hardware capabilities
+- Requires significant RAM for model loading
+
+## Troubleshooting
+
+1. If you encounter CUDA out-of-memory errors:
+   - Reduce batch size
+   - Free up GPU memory
+   - Consider using CPU-only mode
+
+2. If models fail to load:
+   - Check internet connection
+   - Verify CUDA installation
+   - Ensure sufficient disk space
+
+3. For audio generation issues:
+   - Verify input text is not empty
+   - Check system audio settings
+   - Ensure required models are properly downloaded
+
 ## Contributing
-I welcome contributions to enhance this project. Feel free to open issues or submit pull requests
 
+Contributions are welcome! Please feel free to submit a Pull Request.
 
