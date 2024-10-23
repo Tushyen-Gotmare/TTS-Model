@@ -2,6 +2,12 @@
 
 A Streamlit-based web application for generating and fine-tuning text-to-speech models using the SpeechT5 architecture.
 
+![image](https://github.com/user-attachments/assets/5baed9e2-b030-4f10-87c9-be74f8290f88)
+
+![image](https://github.com/user-attachments/assets/3802606a-5681-4126-a454-19fd9935b321)
+
+
+
 ## Features
 
 - 🎤 Text-to-speech generation
